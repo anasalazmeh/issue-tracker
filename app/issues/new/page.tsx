@@ -10,6 +10,7 @@ import axios from "axios";
 import { createissueshema } from "@/app/validationSachema";
 import { resolve } from "path";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
 type Issueform =z.infer<typeof createissueshema>
 const  NewIssues = () => {
   const route=useRouter()
@@ -33,7 +34,7 @@ const  NewIssues = () => {
       <TextField.Root>
         <TextField.Input placeholder="Title" {...register("title")} />
       </TextField.Root>
-        {errors.title && <Text color="red" as="p">{errors.title.message}</Text>}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
       <Controller
         name="description"
         control={control}
@@ -41,7 +42,7 @@ const  NewIssues = () => {
           <SimpleMDE placeholder="Description" {...field} />
         )}
       />
-      {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}
+       <ErrorMessage>{errors.description?.message}</ErrorMessage>
       <Button>Submit new issue</Button>
     </form>
     </div>
