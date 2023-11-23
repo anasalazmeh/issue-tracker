@@ -6,7 +6,11 @@ const createissueshema = z.object({
   title: z.string().min(1).max(255),
   description: z.string().min(1),
 });
-
+export async function GET(requset:NextRequest) {
+  const issues=await prisma.issue.findMany()
+  return NextResponse.json(issues,{status:200})
+  
+}
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
