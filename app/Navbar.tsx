@@ -8,7 +8,7 @@ export const Navbar = () => {
   const currentPath = usePathname();
   const link = [
     { label: "Dashbored", href: "/" },
-    { label: "Issue", href: "/issue" },
+    { label: "Issues", href: "/issues" },
   ];
   return (
     <nav className="flex px-5 mb-5 space-x-6 h-14 items-center border-b-2">
