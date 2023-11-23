@@ -1,9 +1,11 @@
+
 import { Button } from '@radix-ui/themes'
+import Link from 'next/link'
 import React from 'react'
 
 const Issuepage = () => {
   return (
-    <div><Button>Issuepage</Button></div>
+    <div><Button><Link href={'/issues/new'}>New issues</Link></Button></div>
   )
 }
 
