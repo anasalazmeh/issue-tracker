@@ -2,13 +2,13 @@ import prisma from "@/prisma/client";
 import { Table, TableColumnHeaderCell } from "@radix-ui/themes";
 import delay from "delay";
 import { IssueStatusBadge, Link } from "../components";
-import IssueAction from "./IssueAction";
+import {IssueAction} from "../components";
 const Issuepage = async () => {
   const data = await prisma.issue.findMany();
-  await delay(2000)
+  await delay(2000);
   return (
     <div className=" space-y-5">
-      <IssueAction/>
+      <IssueAction href={"/issues/new"}>New issues</IssueAction>
       <Table.Root className="w-full" variant="surface">
         <Table.Header>
           <Table.Row>
