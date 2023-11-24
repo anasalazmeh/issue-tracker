@@ -4,8 +4,10 @@ import { createissueshema } from "../../validationSachema";
 
 export async function GET(requset: NextRequest) {
   const issues = await prisma.issue.findMany();
+  if(!issues)return NextResponse.json({error:'the data not invalid'},{status:400})
   return NextResponse.json(issues, { status: 200 });
 }
+
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
