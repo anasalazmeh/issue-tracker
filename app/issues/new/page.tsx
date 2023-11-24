@@ -5,6 +5,7 @@ import { createissueshema } from "@/app/validationSachema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, CalloutText, TextField } from "@radix-ui/themes";
 import axios from "axios";
+import delay from "delay";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,7 +13,7 @@ import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 type Issueform = z.infer<typeof createissueshema>;
-const NewIssues = () => {
+const NewIssues =  () => {
   const route = useRouter();
   const {
     control,
@@ -33,7 +34,7 @@ const NewIssues = () => {
       route.push("/issues/new");
     }
   });
-
+   delay(3000)
   return (
     <div className="max-w-xl">
       {error && (
