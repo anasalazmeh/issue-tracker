@@ -7,11 +7,12 @@ import { Button, Callout, CalloutText, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import delay from "delay";
 import "easymde/dist/easymde.min.css";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
+const SimpleMDE= dynamic(()=>import("react-simplemde-editor"),{ssr:false})
 type Issueform = z.infer<typeof createissueshema>;
 const NewIssues =  () => {
   const route = useRouter();
