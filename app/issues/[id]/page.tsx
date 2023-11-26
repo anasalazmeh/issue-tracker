@@ -14,7 +14,6 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
     where: { id: +id },
   });
   if (!issue) notFound();
-  await delay(2000);
   return (
     <Grid columns={{ initial: "1", md: "2" }} gap="5">
       <Box>
