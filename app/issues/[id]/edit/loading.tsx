@@ -1,5 +1,5 @@
 import React from 'react'
-import LoadingForm from '../../_components/loadingForm'
+import LoadingForm from '../../_components/LoadingForm'
 
 const LoadingEdit = () => {
   return (

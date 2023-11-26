@@ -1,25 +1,22 @@
+import { issueshema } from "@/app/validationSachema";
 import prisma from "@/prisma/client";
+import { count } from "console";
 import { NextRequest, NextResponse } from "next/server";
-import { issueshema } from "../../validationSachema";
 
-export async function GET(requset: NextRequest) {
-  const issues = await prisma.issue.findMany();
-  if (!issues)
-    return NextResponse.json(
-      { error: "the data not invalid" },
-      { status: 400 }
-    );
-  return NextResponse.json(issues, { status: 200 });
-}
-
-export async function POST(request: NextRequest) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const body = await request.json();
-
   const validation = issueshema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
-
-  const newIssue = await prisma.issue.create({
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+  if (!issue) return NextResponse.json({ error: "Invalied issue" });
+  const newIssue = await prisma.issue.update({
+    where: { id: issue.id },
     data: {
       title: body.title,
       description: body.description,

@@ -1,6 +1,6 @@
 "use client";
 import { ErrorMessage, Spinner } from "@/app/components";
-import { createissueshema } from "@/app/validationSachema";
+import { issueshema } from "@/app/validationSachema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
 import { Button, Callout, CalloutText, TextField } from "@radix-ui/themes";
@@ -12,16 +12,18 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-const SimpleMDE= dynamic(()=>import("react-simplemde-editor"),{ssr:false})
-type IssueformData = z.infer<typeof createissueshema>;
-const IssueForm =  ({issue}:{issue?:Issue}) => {
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+type IssueformData = z.infer<typeof issueshema>;
+const IssueForm = ({ issue }: { issue?: Issue }) => {
   const route = useRouter();
   const {
     control,
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IssueformData>({ resolver: zodResolver(createissueshema) });
+  } = useForm<IssueformData>({ resolver: zodResolver(issueshema) });
   const [error, seterror] = useState("");
   const [isSunbit, setSumbit] = useState(false);
   const Submit = handleSubmit(async (data) => {
@@ -35,7 +37,7 @@ const IssueForm =  ({issue}:{issue?:Issue}) => {
       route.push("/issues/new");
     }
   });
-   delay(3000)
+  delay(3000);
   return (
     <div className="max-w-xl">
       {error && (
@@ -45,7 +47,11 @@ const IssueForm =  ({issue}:{issue?:Issue}) => {
       )}
       <form className="space-y-3  " onSubmit={Submit}>
         <TextField.Root>
-          <TextField.Input defaultValue={issue?.title} placeholder="Title" {...register("title")} />
+          <TextField.Input
+            defaultValue={issue?.title}
+            placeholder="Title"
+            {...register("title")}
+          />
         </TextField.Root>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
