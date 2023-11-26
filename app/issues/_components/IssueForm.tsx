@@ -29,7 +29,8 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const Submit = handleSubmit(async (data) => {
     try {
       setSumbit(true);
-      await axios.post("/api/issues", data);
+      if (issue) await axios.patch(`/api/issues/${issue.id}`, data);
+      else await axios.post("/api/issues", data);
       setSumbit(false);
       route.push("/issues");
     } catch (error) {
@@ -64,7 +65,8 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button className="disabled:bg-violet-600" disabled={isSunbit}>
-          Submit new issue {isSunbit && <Spinner />}
+          {issue ? "Update issue" : "Submit new issue"}{" "}
+          {isSunbit && <Spinner />}
         </Button>
       </form>
     </div>
