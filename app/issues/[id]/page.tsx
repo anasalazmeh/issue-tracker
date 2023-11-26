@@ -4,7 +4,8 @@ import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Box, Grid } from "@radix-ui/themes";
 import delay from "delay";
 import { notFound } from "next/navigation";
-import IssueDelails from "./issueDelails";
+import IssueDelails from "./IssueDelails";
+
 
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
   const id = parseInt(params.id);
