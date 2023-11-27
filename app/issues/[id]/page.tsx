@@ -6,9 +6,12 @@ import { Box, Grid } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import DeleteButton from "./DeleteButton";
 import IssueDelails from "./IssueDelails";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
+ const session=await getServerSession(authOptions)
   const id = parseInt(params.id);
   if (typeof id == "undefined") notFound();
   const issue = await prisma.issue.findUnique({
@@ -20,7 +23,7 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
       <Box className="col-span-3">
         <IssueDelails issue={issue} />
       </Box>
-      <Box className="flex flex-col max-w-fit space-y-3">
+      { session &&<Box className="flex flex-col max-w-fit space-y-3">
         <IssueBotton
           className="flex items-center"
           href={`/issues/edit/${issue.id}`}
@@ -29,7 +32,7 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
           Edit Issue
         </IssueBotton>
         <DeleteButton issueId={1}/>
-      </Box>
+      </Box>}
     </Grid>
   );
 };
