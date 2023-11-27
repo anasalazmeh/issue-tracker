@@ -11,8 +11,8 @@ const IssueDelails = ({issue}:{issue:Issue}) => {
           <IssueStatusBadge status={issue.status} />
           <Text>{issue.createAt.toDateString()}</Text>
         </Flex>
-        <Card className="prose">
-          <ReactMarkDown>{issue.description}</ReactMarkDown>
+        <Card className="prose max-w-full">
+          <ReactMarkDown >{issue.description}</ReactMarkDown>
         </Card>
     </>
   )

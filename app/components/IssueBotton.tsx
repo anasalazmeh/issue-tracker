@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode;
   className?: string;
 }
-const IssueAction = ({ href, children, className }: Props) => {
+const IssueBotton = ({ href, children, className }: Props) => {
   return (
     <Button>
       <Link href={href} className={className}>
@@ -16,4 +16,4 @@ const IssueAction = ({ href, children, className }: Props) => {
   );
 };
 
-export default IssueAction;
+export default IssueBotton;
