@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "./Navbar";
 import "./globals.css";
 import "./theme-config.css";
+import AuthProvider from "./auth/Provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <Theme appearance="light" accentColor="violet">
-          <Navbar />
-          <main className=" p-5">{children}</main>
-        </Theme>
+        <AuthProvider>
+          <Theme appearance="light" accentColor="violet">
+            <Navbar />
+            <main className=" p-5">{children}</main>
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );

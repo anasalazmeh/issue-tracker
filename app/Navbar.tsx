@@ -1,5 +1,7 @@
 'use client'
+import { Box, Text } from "@radix-ui/themes";
 import classNames from "classnames";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -10,6 +12,7 @@ export const Navbar = () => {
     { label: "Dashbored", href: "/" },
     { label: "Issues", href: "/issues/list" },
   ];
+  const {status,data}=useSession()
   return (
     <nav className="flex px-5 mb-5 space-x-6 h-14 items-center border-b-2">
       <Link href={"/"} className="text-3xl">
@@ -29,7 +32,12 @@ export const Navbar = () => {
             <Link href={link.href}>{link.label}</Link>
           </li>
         ))}
+      
       </ul>
+      <Box>
+        {status =='authenticated' && <Link href={'/api/auth/signout'}>Log out</Link>}
+        {status =='unauthenticated' && <Link href={'/api/auth/signin'}>Login</Link>}
+      </Box>
     </nav>
   );
 };
