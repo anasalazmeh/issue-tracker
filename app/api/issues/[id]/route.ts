@@ -2,6 +2,7 @@
 import { issueshema } from "@/app/validationSachema";
 import prisma from "@/prisma/client";
 import { count } from "console";
+import delay from "delay";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest,{params}:{params:{id:string}}) {
@@ -30,6 +31,7 @@ export async function DELETE(request: NextRequest,{params}:{params:{id:string}})
   })
   if(!issue)
   return NextResponse.json({error:"Invalied issue"},{status:404})
+ await delay(2000)
   const newIssue = await prisma.issue.delete({
     where:{id:issue.id},
   });
