@@ -30,7 +30,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       else await axios.post("/api/issues", data);
       setSumbit(false);
       route.refresh()
-      route.push("/issues");
+      route.push("/issues/list");
     } catch (error) {
       seterror("An unexpevted error occurred.");
       route.push("/issues/new");

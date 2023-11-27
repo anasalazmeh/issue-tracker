@@ -1,12 +1,11 @@
 
+import { IssueBotton } from "@/app/components";
 import prisma from "@/prisma/client";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Box, Grid } from "@radix-ui/themes";
-import delay from "delay";
 import { notFound } from "next/navigation";
-import IssueDelails from "./IssueDelails";
 import DeleteButton from "./DeleteButton";
-import { IssueBotton } from "@/app/components";
+import IssueDelails from "./IssueDelails";
 
 
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
@@ -24,7 +23,7 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
       <Box className="flex flex-col max-w-fit space-y-3">
         <IssueBotton
           className="flex items-center"
-          href={`/issues/${issue.id}/edit`}
+          href={`/issues/edit/${issue.id}`}
         >
           <Pencil2Icon className="mr-2" />
           Edit Issue
