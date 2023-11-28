@@ -26,7 +26,7 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
       </Box>
       
       { session &&<Box className="flex flex-col w-full space-y-3 ">
-      <AssigneeSelect/>
+      <AssigneeSelect issue={issue}/>
         <IssueBotton
           className="flex items-center"
           href={`/issues/edit/${issue.id}`}
