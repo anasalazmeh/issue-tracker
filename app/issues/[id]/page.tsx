@@ -8,6 +8,7 @@ import DeleteButton from "./DeleteButton";
 import IssueDelails from "./IssueDelails";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+import AssigneeSelect from "./AssigneeSelect";
 
 
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
@@ -23,7 +24,9 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
       <Box className="col-span-3">
         <IssueDelails issue={issue} />
       </Box>
-      { session &&<Box className="flex flex-col max-w-fit space-y-3">
+      
+      { session &&<Box className="flex flex-col w-1/3 space-y-3">
+      <AssigneeSelect/>
         <IssueBotton
           className="flex items-center"
           href={`/issues/edit/${issue.id}`}
