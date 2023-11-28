@@ -5,7 +5,7 @@ import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
+import toast,{ Toaster} from 'react-hot-toast'
 import React, { useEffect, useState } from "react";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
@@ -23,14 +23,18 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
   if (error) return null;
   if (isLoading) return <Skeleton />;
   return (
-    <Select.Root
+    <>
+      <Select.Root
       defaultValue={issue.assignedToUserId || "Unassigned"}
-      onValueChange={(userId) =>{
+      onValueChange={ (userId) =>{
+          axios.patch("/api/issues/" + issue.id, {
+            assignedToUserId: userId == "Unassigned" ? null : userId,
+          }).catch(()=>{
+            toast.error('Changes could not be saved')
+          })
+          route.refresh()
         
-        axios.patch("/api/issues/" + issue.id, {
-          assignedToUserId: userId == "Unassigned" ? null : userId,
-        })
-        route.refresh()
+        
       }
       }
     >
@@ -47,6 +51,8 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
         </Select.Group>
       </Select.Content>
     </Select.Root>
+    <Toaster/>    
+    </>
   );
 };
 
