@@ -20,12 +20,12 @@ const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
   });
   if (!issue) notFound();
   return (
-    <Grid columns={{ initial: "1", md: "5" }} gapY='2' gapX='4'>
+    <Grid columns={{ initial: "1", md: "5" }} gapY='2' gapX='5'>
       <Box className="col-span-4">
         <IssueDelails issue={issue} />
       </Box>
       
-      { session &&<Box className="flex flex-col w-full space-y-3">
+      { session &&<Box className="flex flex-col w-full space-y-3 ">
       <AssigneeSelect/>
         <IssueBotton
           className="flex items-center"
