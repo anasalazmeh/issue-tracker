@@ -1,12 +1,22 @@
 import prisma from "@/prisma/client";
-import { Table, TableColumnHeaderCell } from "@radix-ui/themes";
+import { Box, Flex, Table, TableColumnHeaderCell } from "@radix-ui/themes";
 import { IssueBotton, IssueStatusBadge, Link } from "../../components";
+import IssueStatusFilter from "./IssueStatusFilter";
+import { Status } from "@prisma/client";
+import { object } from "zod";
 
-const Issuepage = async () => {
-  const data = await prisma.issue.findMany();
+const Issuepage = async ({searchParams}:{searchParams:{status:Status}}) => {
+  const statuses=Object.values(Status)
+  const status=statuses.includes(searchParams.status)? searchParams.status :undefined
+  const data = await prisma.issue.findMany({
+    where:{status}
+  });
   return (
     <div className=" space-y-5">
+      <Flex justify='between'>
+        <IssueStatusFilter/>
       <IssueBotton href={"/issues/new"}>New issues</IssueBotton>
+      </Flex>
       <Table.Root className="w-full" variant="surface">
         <Table.Header>
           <Table.Row>
