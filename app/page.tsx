@@ -1,6 +1,7 @@
+import Pagniation from "./components/Pagniation";
 
 export default function Home() {
   return (
-    <h1>Hello world</h1>
+    <Pagniation itemCount={100} pageSize={20} currentPage={1}/>
   )
 }
