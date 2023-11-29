@@ -1,5 +1,6 @@
 "use client";
 import { Spinner } from "@/app/components";
+import { Issue } from "@prisma/client";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -10,14 +11,14 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const DeleteButton = ({ issueId }: { issueId: number }) => {
+const DeleteButton = ({ issue }: { issue: Issue }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isLoading, setloading] = useState(false);
   const onDelete = async () => {
     try {
       setloading(true);
-      await axios.delete("/api/issues/" + issueId);
+      await axios.delete("/api/issues/" + issue.id);
       router.push("/issues/list");
       router.refresh();
     } catch (error) {

@@ -6,13 +6,15 @@ import { Issue, Status } from "@prisma/client";
 import { object } from "zod";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
+import Pagniation from "@/app/components/Pagniation";
 interface Props {
   searchParams: {
-     status: Status 
-     orderBy:keyof Issue
+    status: Status;
+    orderBy: keyof Issue;
+    page: string;
   };
 }
-const Issuepage = async ({searchParams}:Props ) => {
+const Issuepage = async ({ searchParams }: Props) => {
   const columns: { label: string; value: keyof Issue; className?: string }[] = [
     { label: "Issues", value: "title" },
     { label: "statue", value: "status", className: "hidden md:table-cell" },
@@ -22,11 +24,24 @@ const Issuepage = async ({searchParams}:Props ) => {
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
     : undefined;
-    const orderBy=columns.map(column=>column.value).includes(searchParams.orderBy)?{[searchParams.orderBy]:'asc'}:undefined
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 10;
   const data = await prisma.issue.findMany({
     where: { status },
-    orderBy
+    orderBy,
+    skip: (page - 1) * pageSize,
+    take:pageSize
   });
+  const issueCount= await prisma.issue.count({
+    where:{
+      status
+    }
+  })
 
   return (
     <div className=" space-y-5">
@@ -47,7 +62,9 @@ const Issuepage = async ({searchParams}:Props ) => {
                 >
                   {item.label}
                 </NextLink>
-                {item.value===searchParams.orderBy && (<ArrowUpIcon className="inline"/>)}
+                {item.value === searchParams.orderBy && (
+                  <ArrowUpIcon className="inline" />
+                )}
               </Table.ColumnHeaderCell>
             ))}
           </Table.Row>
@@ -71,6 +88,7 @@ const Issuepage = async ({searchParams}:Props ) => {
           ))}
         </Table.Body>
       </Table.Root>
+      <Pagniation itemCount={issueCount} pageSize={pageSize} currentPage={page}/>
     </div>
   );
 };
