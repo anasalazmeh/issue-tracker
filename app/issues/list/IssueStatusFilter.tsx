@@ -1,9 +1,14 @@
 'use client'
-import { Status } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import React, { useReducer } from "react";
-
+interface Props {
+  searchParams: {
+     status: Status 
+     orderBy:keyof Issue
+  };
+}
 const IssueStatusFilter = () => {
   const statuses: { label: string; value?: Status }[] = [
     { label: "All" },
