@@ -21,8 +21,8 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
           <YAxis />
           <Bar
             dataKey="value"
-            barSize={60}
-            style={{ fill: "var(--accent-9)" }}
+            barSize={50}
+            style={{ fill: "var(--accent-9)" }} 
           />
         </BarChart>
       </ResponsiveContainer>
