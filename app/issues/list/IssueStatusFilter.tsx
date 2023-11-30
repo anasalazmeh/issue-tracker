@@ -1,17 +1,13 @@
 'use client'
-import { Issue, Status } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useReducer } from "react";
+import { IssueQuery } from "./IssueTable";
 interface Props {
-  searchParams: {
-     status: Status 
-     orderBy:keyof Issue
-  };
+  searchParams: IssueQuery
 }
 const IssueStatusFilter = () => {
   const searchParams=useSearchParams()
-  const statuses: { label: string; value?: Status }[] = [
+  const statuses: { label: string, value?:"OPEN"|"IN_PROGRESS"|"CLOSED"; }[] = [
     { label: "All" },
     { label: "Open", value: "OPEN" },
     { label: "In Progress", value: "IN_PROGRESS" },
@@ -19,9 +15,9 @@ const IssueStatusFilter = () => {
   ];
   const route=useRouter()
   return (
-    <Select.Root defaultValue={searchParams.get('status')||" "} onValueChange={(Status)=>{
+    <Select.Root defaultValue={searchParams.get('status')||" "} onValueChange={(status)=>{
       let param=``
-      if(Status !==" ") param+=`status=${Status}`
+      if(status !==" ") param+=`status=${status}`
       if(searchParams.get('orderBy')) param+=`&orderBy=${searchParams.get('orderBy')!}`
       const query= param !==`` ?`?${param}`:""
       route.push(`/issues/list${query}`)

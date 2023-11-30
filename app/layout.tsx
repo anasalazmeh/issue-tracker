@@ -3,10 +3,10 @@ import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "./Navbar";
-import "./globals.css";
-import "./theme-config.css";
 import AuthProvider from "./auth/Provider";
+import "./globals.css";
 import ReactQueryProvider from "./react query/ReactQueryProvider";
+import "./theme-config.css";
 
 const inter = Inter({
   subsets: ["latin"],

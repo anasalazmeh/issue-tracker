@@ -1,12 +1,11 @@
 "use client";
-import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
+import { Skeleton } from '@/app/components';
+import { Avatar, Box, DropdownMenu } from "@radix-ui/themes";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { AiFillBug } from "react-icons/ai";
-import { Skeleton } from '@/app/components'
 export const Navbar = () => {
   return (
     <nav className="flex px-5 mb-5 space-x-6 h-14 items-center border-b-2 justify-between">

@@ -1,14 +1,14 @@
 
+import authOptions from "@/app/auth/authOptions";
 import { IssueBotton } from "@/app/components";
 import prisma from "@/prisma/client";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Box, Grid } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
+import AssigneeSelect from "./AssigneeSelect";
 import DeleteButton from "./DeleteButton";
 import IssueDelails from "./IssueDelails";
-import { getServerSession } from "next-auth";
-import authOptions from "@/app/auth/authOptions";
-import AssigneeSelect from "./AssigneeSelect";
 
 
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {

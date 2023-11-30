@@ -1,12 +1,12 @@
-import { IssueBotton, Skeleton } from "@/app/components";
+import { Skeleton } from "@/app/components";
 import { Table, TableColumnHeaderCell } from "@radix-ui/themes";
-
+import IssueAction from "./IssueAction";
 
 const LoadingIssue = () => {
   const data = [1, 2, 3, 4, 5];
   return (
     <div className="space-y-5">
-      <IssueBotton href={"/issues/new"}>New issues</IssueBotton>
+      <IssueAction/>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
