@@ -1,10 +1,6 @@
 'use client'
 import { Select } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import { IssueQuery } from "./IssueTable";
-interface Props {
-  searchParams: IssueQuery
-}
 const IssueStatusFilter = () => {
   const searchParams=useSearchParams()
   const statuses: { label: string, value?:"OPEN"|"IN_PROGRESS"|"CLOSED"; }[] = [

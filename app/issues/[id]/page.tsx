@@ -11,7 +11,7 @@ import IssueDelails from "./IssueDelails";
 import { cache } from "react";
 
 const fatchUser = cache((issueId: number) =>
-prisma.issue.findUnique({ where: { id: issueId } }));
+prisma.issue.findUnique({ where: { id: issueId.toString() } }));
 const IssuedetailPage = async ({ params }: { params: { id: string } }) => {
   const session = await getServerSession(authOptions);
   const id = parseInt(params.id);
