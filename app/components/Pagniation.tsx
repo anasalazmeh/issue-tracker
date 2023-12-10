@@ -12,7 +12,7 @@ const Pagniation = ({itemCount,pageSize,currentPage}:Props) => {
   const searchParams=useSearchParams();
   const router =useRouter()
   const pageCount=Math.ceil(itemCount/pageSize)
-  if(pageSize <=1)return null
+  if(pageCount <=1)return null
   const changePage=(page:number)=>{
     const params=new URLSearchParams(searchParams)
     params.set('page',page.toString());
