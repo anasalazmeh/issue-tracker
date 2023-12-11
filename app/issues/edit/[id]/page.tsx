@@ -9,7 +9,7 @@ const IssueForm = dynamic(() => import("../../_components/IssueForm"), {
 });
 const IssueEdit = async ({ params }: { params: { id: string } }) => {
   const Issue = await prisma.issue.findUnique({
-    where: { id: params.id },
+    where: { id: parseInt(params.id) },
   });
   if (!Issue) notFound();
   return <IssueForm issue={Issue} />;

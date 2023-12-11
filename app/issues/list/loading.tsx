@@ -23,16 +23,16 @@ const LoadingIssue = () => {
           {data?.map((item) => (
             <Table.Row key={item}>
               <Table.Cell>
-                <Skeleton style={{ width: "50px" }} />
+                <Skeleton style={{ width: "130px" }} />
                 <div className="block md:hidden">
-                  <Skeleton style={{ width: "20px" }} />
+                  <Skeleton style={{ width: "60px" }} />
                 </div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <Skeleton style={{ width: "20px" }} />
+                <Skeleton style={{ width: "60px" }} />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <Skeleton style={{ width: "50px" }} />
+                <Skeleton style={{ width: "100px" }} />
               </Table.Cell>
             </Table.Row>
           ))}
