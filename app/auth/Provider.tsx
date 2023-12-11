@@ -9,3 +9,4 @@ const AuthProvider = ({children}:{children:ReactNode}) => {
 }
 
 export default AuthProvider
+export const dynamic = "force-dynamic";

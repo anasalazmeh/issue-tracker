@@ -56,3 +56,6 @@ export async function DELETE(
   });
   return NextResponse.json(newIssue, { status: 201 });
 }
+
+
+export const dynamic = "force-dynamic";

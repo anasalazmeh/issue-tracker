@@ -38,4 +38,4 @@ export default function RootLayout({
     </html>
   );
 }
-export const dynamic = 'auto'
+export const dynamic = "force-dynamic";
