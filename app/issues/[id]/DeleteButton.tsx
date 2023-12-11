@@ -30,10 +30,10 @@ const DeleteButton = ({ issue }: { issue: Issue }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isLoading}>
+          <button className="bg-red-500 hover:bg-red-400 transition-all text-white p-1 rounded-sm" disabled={isLoading}>
             Delecte Issue
             {isLoading && <Spinner/>}
-          </Button>
+          </button>
         </AlertDialog.Trigger>
         <AlertDialog.Content style={{ maxWidth: 450 }}>
           <AlertDialog.Title>Confim Delection</AlertDialog.Title>
@@ -42,14 +42,14 @@ const DeleteButton = ({ issue }: { issue: Issue }) => {
           </AlertDialog.Description>
           <Flex gap="3" mt="4" justify="end">
             <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
+              <button className="bg-gray-100 hover:bg-gray-50 transition-all px-2 rounded-md" >
                 Cancel
-              </Button>
+              </button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button variant="solid" color="red" onClick={onDelete}>
+              <button className="bg-red-500 hover:bg-red-400 transition-all text-white p-2 rounded-md" onClick={onDelete}>
                 Delecte Issue
-              </Button>
+              </button>
             </AlertDialog.Action>
           </Flex>
         </AlertDialog.Content>
